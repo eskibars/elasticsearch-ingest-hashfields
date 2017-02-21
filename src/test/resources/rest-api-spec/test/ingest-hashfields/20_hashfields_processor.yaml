@@ -1,0 +1,36 @@
+---
+"Test hashfields processor with defaults":
+  - do:
+      ingest.put_pipeline:
+        id: "my_pipeline"
+        body:  >
+          {
+            "description": "_description",
+            "processors": [
+              {
+                "hashfields" : {
+                  "fields" : [ "field1" ],
+                  "target_field" : "field2",
+                  "algorithm" : "sha256"
+                }
+              }
+            ]
+          }
+  - match: { acknowledged: true }
+
+  - do:
+      index:
+        index: test
+        type: test
+        id: 1
+        pipeline: "my_pipeline"
+        body: {field1: "my_value"}
+
+  - do:
+      get:
+        index: test
+        type: test
+        id: 1
+  - match: { _source.field1: "my_value" }
+  - match: { _source.field2: "bffdb4af541293a8927e3c56b040653b068d4f6e712e085e02f0a9caeeeabbfb" }
+
