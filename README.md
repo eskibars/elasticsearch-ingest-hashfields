@@ -40,9 +40,24 @@ GET /my-index/my-type/1
 | target_field  | Field to store the hashed value in |
 | algorithm     | md5, sha1, or sha256 |
 
-## Setup
+## Installation
+Builds are provided for Elasticsearch 5.1.1 and above.  Versions of this plugin are tied to Elasticsearch versioning.
+To install, you can download at `http://elastic-plugins.eskibars.com/artifacts/ingest-hashfields-<VERSION>.zip` and then install with
 
-In order to install this plugin, you need to create a zip distribution first by running
+```bash
+bin/plugin install file:///path/to/ingest-hashfields/build/distribution/ingest-hashfields-<VERSION>.zip
+```
+
+| Version | Location |
+| ------- | -------- |
+| 5.1.1 | http://elastic-plugins.eskibars.com/artifacts/ingest-hashfields-5.1.1.zip |
+| 5.1.2 | http://elastic-plugins.eskibars.com/artifacts/ingest-hashfields-5.1.2.zip |
+| 5.2.0 | http://elastic-plugins.eskibars.com/artifacts/ingest-hashfields-5.2.0.zip |
+| 5.2.1 | http://elastic-plugins.eskibars.com/artifacts/ingest-hashfields-5.2.1.zip |
+
+## Building
+
+If you want to build yourself, you need to create a zip distribution first by running
 
 ```bash
 gradle clean check
@@ -53,12 +68,13 @@ This will produce a zip file in `build/distributions`.
 After building the zip file, you can install it like this
 
 ```bash
-bin/plugin install file:///path/to/ingest-hashfields/build/distribution/ingest-hashfields-0.0.1-SNAPSHOT.zip
+bin/plugin install file:///path/to/ingest-hashfields/build/distribution/ingest-hashfields-<VERSION>.zip
 ```
 
 ## Bugs & TODO
 
 * More tests!
 * Add separator configuration
+* Support for non-string types
 * More hash algorithms
 
