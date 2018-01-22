@@ -32,7 +32,7 @@ public class HashfieldsRestIT extends ESClientYamlSuiteTestCase {
     }
 
     @ParametersFactory
-    public static Iterable<Object[]> parameters() throws IOException /*, ClientYamlTestParseException*/ {
+    public static Iterable<Object[]> parameters() throws IOException, Exception /*, ClientYamlTestParseException*/ {
         return ESClientYamlSuiteTestCase.createParameters();
     }
 }
