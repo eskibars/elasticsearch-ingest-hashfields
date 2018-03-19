@@ -17,6 +17,8 @@
 
 package org.elasticsearch.plugin.ingest.hashfields;
 
+import com.carrotsearch.randomizedtesting.generators.RandomStrings;
+
 import org.elasticsearch.ingest.IngestDocument;
 import org.elasticsearch.ingest.RandomDocumentPicks;
 import org.elasticsearch.test.ESTestCase;
@@ -38,7 +40,8 @@ public class HashfieldsProcessorTests extends ESTestCase {
 
         List<String> s = new ArrayList<String>();
         s.add("source_field");
-        HashfieldsProcessor processor = new HashfieldsProcessor(randomAsciiOfLength(10), s, "target_field", "md5");
+        String str = RandomStrings.randomAsciiLettersOfLength(random(), 10);
+        HashfieldsProcessor processor = new HashfieldsProcessor(str, s, "target_field", "md5");
         processor.execute(ingestDocument);
         Map<String, Object> data = ingestDocument.getSourceAndMetadata();
 
